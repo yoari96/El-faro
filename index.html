@@ -4,46 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Faro</title>
-</head>
-<body>
-    <header>
-        <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portada - El Faro</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-color: white;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
         }
-        header {
-            background-color: #ac5d13;
+        header, nav {
+            background-color: #f5f5f5;
             color: #d2d3d0;
             padding: 20px;
             text-align: center;
+            justify-content: space-between;
+            align-items: center;
         }
-        h1 {
+        header h1 {
             margin: 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }  
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            text-decoration: underline; 
+        }
+        nav ul li a:hover {
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        section:hover {
+            background-color: black;
+            color: white;
+        }
+        
+        section h2 {
+            margin-top: 0;
+        }
+        section p {
+            margin-bottom: 15px;
         }
         img {
             width: 200px;
             height: auto;
             margin-top: 10px;
         }
+        footer {
+            background-color: #c9d2d0;
+            color: #31231e; 
+            padding: 20px;
+            text-align: center;
+        }
+
+        #form-contacto {
+        margin-top: 20px;
+        }
+
+        .input-field {
+        margin-bottom: 10px;
+        padding: 8px;
+        width: 100%;
+        }
+
+        .submit-button {
+        padding: 8px 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        }
+
+        .submit-button:hover {
+        background-color: #45a049;
+        }
+        
+        
+        #fecha-hora {
+            font-size: 16px;
+            font-weight: bold;
+            color: #31231e;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+
+        form input[type="text"]{
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        form button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        .contador-articulos {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>El Faro</h1>
+        <div id="fecha-hora"></div>
         <img src="logotipo.jpeg">
     </header>
 </body>
-</html>
-
-    
+</html>   
     <nav>
         <ul>
             <li><a href="#inicio">Inicio</a></li>
@@ -52,16 +145,13 @@
         </ul>
     </nav>
     
-    <main>
+    <main id="contenedor-articulos">
         <section id="inicio">
             <h2>Inicio</h2>
-
-                    <h2>LEYENDA: Esta es la historia y el legado de Akira Toriyama</h2>
+            <div class="contador-articulos"></div>           
+                    <h2 class="titulo-noticia">LEYENDA: Esta es la historia y el legado de Akira Toriyama</h2>
                     <p>Categoría: Noticia General</p>
-                    <td>El creador de Dragon Ball pasó por varias etapas en su carrera antes de volverse el mejor mangaka.</td>
-
-                    
-                    
+                    <td>El creador de Dragon Ball pasó por varias etapas en su carrera antes de volverse el mejor mangaka.</td>                  
                     <head>
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -195,7 +285,7 @@
                                                 </body>
                                                 </html> 
 
-                    <h2>Trump dice que los estadounidenses judíos que votan por Biden no aman a Israel y que "deberían hablar con ellos"</h2>
+                    <h2 class="titulo-noticia">Trump dice que los estadounidenses judíos que votan por Biden no aman a Israel y que "deberían hablar con ellos"</h2>
                     <p>Categoría: Noticia General</p>
                     <head>
                         <meta charset="UTF-8">
@@ -234,7 +324,7 @@
                     </td>
 
  
-                    <h2>Condenan a entre 10 y 15 años de prisión a James y Jennifer Crumbley, los padres del atacante del tiroteo escolar en Michigan</h2>
+                    <h2 class="titulo-noticia">Condenan a entre 10 y 15 años de prisión a James y Jennifer Crumbley, los padres del atacante del tiroteo escolar en Michigan</h2>
                     <p>Categoría: Noticia General</p>
                     <td>James y Jennifer Crumbley, los padres del adolescente que mató a cuatro estudiantes en un tiroteo escolar en 2021 en Oxford, Michigan, fueron sentenciados el martes a entre 10 y 15 años de prisión, respectivamente, semanas después de ser declarados culpables de 
                         homicidio involuntario.
@@ -285,14 +375,11 @@
                     <p>Por su parte, Jennifer Crumbley, también empezó su declaración ante el tribunal expresando sus condolencias a las víctimas y sus familias.</p>
                     "Me siento aquí hoy para expresar mi más profundo pesar por las familias de Hana, Tate, Madisyn, Justin y por todos los afectados el 30 de noviembre de 2021", dijo. 
                     </td>
-
-
         </section>
-
         <section id="Deporte">
             <h2>Deporte</h2>
-
-                    <h2>Medel se encuentra con los dirigentes de Colo Colo en Brasil y esto pasa: "¿Cómo te verías...?"</h2>
+            <div class="contador-articulos"></div>
+                    <h2 class="titulo-noticia">Medel se encuentra con los dirigentes de Colo Colo en Brasil y esto pasa: "¿Cómo te verías...?"</h2>
                     <p>Categoría: Deporte</p>
                     <td>Deporte</td>
                     <td>Durante esta jornada, Gary Medel visitó la concentración de Colo Colo en Río de Janeiro, la ciudad donde él reside, a raíz de su presencia en Vasco de Gama.
@@ -318,8 +405,8 @@
                         Medel, además compartió con Fernando Felicevich, su agente, quien está hospedándose en dicho lugar, y con Brayan Cortés, Esteban Pavez y Arturo Vidal.
                         Pablo Galdames, el otro chileno de Vasco, también estuvo en la reunión.</td></p>
 
-                    <h2>Extreman medidas de seguridad en Madrid ante amenaza de atentado en los cuartos de final de la Champions</h2>
-                    <td>Deporte</td>
+                    <h2 class="titulo-noticia">Extreman medidas de seguridad en Madrid ante amenaza de atentado en los cuartos de final de la Champions</h2>
+                    <p>Categoría: Deporte</p>
                     <td>Las fuerzas de seguridad españolas han reforzado las medidas de seguridad tras la amenaza lanzada por ISIS que apunta a los estadios en los que se celebrarán
                          los cuartos de final de la Champions League, señalaron a CNN fuentes policiales.<p>
                             La amenaza fue compartida en redes sociales a través de medios afines al grupo terrorista, e incluiría los estadios Santiago Bernabéu y Civitas Metropolitano 
@@ -348,12 +435,10 @@
                                      españolas contra el terrorismo se incluye el monitoreo constante de este tipo de amenazas, y ya han encontrado en otras ocasiones que los eventos 
                                      que concentran a una gran cantidad de personas suelen ser un objetivo.</p>
                                      <p>
-                                        Además, comentan que desde el atentado perpetrado en Moscú el 22 de marzo, los terroristas están intentando mantener un clima de alarma y miedo.</p>
-
-                                        
+                                        Además, comentan que desde el atentado perpetrado en Moscú el 22 de marzo, los terroristas están intentando mantener un clima de alarma y miedo.</p>                                       
                         </td>
 
-                            <h2>Tarjeta roja para Cristiano Ronaldo tras darle un codazo a su rival durante la derrota en la Supercopa de Arabia Saudita</h2>
+                            <h2 class="titulo-noticia">Tarjeta roja para Cristiano Ronaldo tras darle un codazo a su rival durante la derrota en la Supercopa de Arabia Saudita</h2>
                             <p>Categoría: Deporte</p>
                             <td>Deporte</td>
                             <td>Cristiano Ronaldo recibió una tarjeta roja por darle un codazo a un rival durante la derrota del Al-Nassr ante el Al-Hilal en la semifinal de la Supercopa de 
@@ -423,48 +508,14 @@
 
                                                             <p>Al-Hilal se enfrentará ahora al Al-Ittihad en la final de la Supercopa de Arabia Saudita el jueves en Abu Dabi.</p>
                             </td>
-
-                            <h2>En racha: Universidad de Chile alcanzó la cima de la tabla tras vencer a Cobreloa </h2>
-                            <p>Categoría: Deporte</p>
-                            <td>El cuadro universitario logró dominar el encuentro y consiguió un valioso triunfo para llegar al primer puesto del torneo, lugar que ahora comparten con Iquique. 
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                    <title>Centrar Imagen - El Faro</title>
-                                    <style>
-                                        .centrar-imagen {
-                                            display: block;
-                                            margin-left: auto;
-                                            margin-right: auto;
-                                        }
-                                    </style>
-                                </head>
-                                <body>
-                                    <img class="centrar-imagen" src="u.png">
-                                </body>
-                                </html>
-                            Cobreloa recibió a Universidad de Chile en el Estadio Zorros del Desierto de Calama en un duelo por la sexta fecha del Campeonato Nacional 2024, donde los azules se impusieron por 3-1.
-                            <p>Los loínos y azules llegaron al partido con cuatro y tres puntos de diferencia con Iquique, primero de la tabla, y desde el primer minuto fueron en busca de los valiosos tres puntos. </p>
-                            El inicio estuvo parejo con llegadas de peligro en ambos arcos, sin embargo fue la escuadra estudiantil la que logró marcar la diferencia y ponerse en ventaja en el marcador al minuto 24 luego del cobro de un penal sobre Cristián Palacios. 
-                            <p>El autor del gol fue Leandro Fernández, quien ejecutó un impecable tiro que se le hizo imposible de atajar al portero Nicolás Avellaneda.</p>
-                            En el segundo tiempo los dirigidos por Gustavo Álvarez aumentaron el marcador con un zurdazo cruzado de Marcelo Morales (60’), pero los mineros descontaron con un tanto de Bairon Monroy (67’).
-                            <p>Pero al minuto 89, Morales hizo una notable jugada y recuperó el balón en la mitad de cancha para asistir a Nicolás Guerra que selló el 3-1.</p>
-                            El valioso triunfo llevo a los universitarios a retener su invicto y llegar al primer lugar de la tabla con 16 unidades, puesto que ahora comparten con Iquique.
-                            <h2>El fixture Cobreloa y Universidad de Chile</h2>
-                            En las siguientes fechas del Campeonato Nacional Cobreloa tendrá dos duelos de visita y se medirá frente a Coquimbo y Colo Colo.
-                            <p>Universidad de Chile por su parte, debe visitar a Unión Española la próxima semana, y en la siguiente recibir a Coquimbo.</p>
-                            </td>
-                <td>
+           
             </table>
         </section>
-
-
-
-        
+     
         <section id="negocios">
             <h2>Negocios</h2>
-
-                    <h2>Dirigentes de Huachipato valoran reunión con Gobierno, pero advierten que estarán pendientes a la Comisión Antidistorsiones</h2>
+            <div class="contador-articulos"></div>
+                    <h2 class="titulo-noticia">Dirigentes de Huachipato valoran reunión con Gobierno, pero advierten que estarán pendientes a la Comisión Antidistorsiones</h2>
                     <p>Categoría: Negocios</p>
                     <td> 
                         <head>
@@ -480,7 +531,7 @@
                             </style>
                         </head>
                         <body>
-                        <video class="centrar-video" width="670" height="360" controls>
+                        <video class="centrar-video" width="570" height="360" controls>
                             <source src="Huachipato.mp4" type="video/mp4">
                             Tu navegador no soporta el elemento de video.
                         </video>
@@ -496,7 +547,7 @@
                               Comisión Antidistorsiones del jueves 11 de abril. </p>
                             </td>
                
-                    <h2>Podrías recibir hasta $25 millones si eres emprendedor: ¿Cómo postular a los fondos semilla?</h2>
+                    <h2 class="titulo-noticia">Podrías recibir hasta $25 millones si eres emprendedor: ¿Cómo postular a los fondos semilla?</h2>
                     <p>Categoría: Negocios</p>
                     
                     <head>
@@ -542,7 +593,7 @@
                     </td>
            
             
-                    <h2>¿La IA va a mejorar la productividad? Las empresas apuestan a que sí</h2>
+                    <h2 class="titulo-noticia">¿La IA va a mejorar la productividad? Las empresas apuestan a que sí</h2>
                     <p>Categoría: Negocios</p>
                     
                     <td>Los economistas dudan que el impacto de esta tecnología ya sea visible en las cifras de productividad. Pero las grandes compañías dicen que la están adoptando en aras de la eficiencia.
@@ -591,8 +642,6 @@
                        Analistas de Vanguard creen que la inteligencia artificial podría ser “transformadora” para la economía estadounidense en la segunda mitad de la década de 2020, comentó Joseph Davis, economista jefe a nivel mundial de la firma financiera. Según Davis, la tecnología podría lograr que los trabajadores ahorren cantidades significativas de tiempo —tal vez un 20 por ciento— en cerca del 80 por ciento de las actividades.
                        <p>“Todavía no lo vemos en los datos”, afirmó, y explicó que cree que el repunte reciente de la productividad ha sido más bien la recuperación rápida después la fuerte caída experimentada durante la pandemia. “La buena noticia es que se avecina otra ola”.</p>
 
-
-
                     </td>
 
         </section>
@@ -600,7 +649,126 @@
     </main>
     
     <footer>
-        <p>&copy; 2024 El Faro. </p>
+        <p>Derechos de autor © 2024 El Faro - Todos los derechos reservados</p>
+        <form id="form-contacto">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+    
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+    
+            <button type="submit" class="submit-button">Enviar</button>
+        </form>
+        <div id="total-articulos" class="contador-articulos"></div>
     </footer>
+
+    
+
+    <form id="form-articulo">
+        <input type="text" id="titulo" placeholder="Título del artículo" required>
+        <input type="text" id="descripcion" placeholder="Descripción del artículo" required>
+        <select id="seccion">
+            <option value="inicio">Inicio</option>
+            <option value="Deporte">Deporte</option>
+            <option value="negocios">Negocios</option>
+        </select>
+        <button type="submit">Enviar Artículo</button>
+    </form>
+    
+    <style>
+        .articulo {
+            background-color: white;
+        }
+    </style>
+
+<script>
+    document.getElementById("form-articulo").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+        
+        
+        const titulo = document.getElementById("titulo").value;
+        const descripcion = document.getElementById("descripcion").value;
+        
+        
+        const seccionSeleccionada = document.getElementById("seccion").value;
+
+        
+        const nuevoArticulo = document.createElement("section");
+        nuevoArticulo.innerHTML = `
+            <h2>${titulo}</h2>
+            <p>${descripcion}</p>
+        `;
+        
+        
+        nuevoArticulo.classList.add("articulo");
+
+        
+        document.getElementById(seccionSeleccionada).appendChild(nuevoArticulo);
+
+        
+        document.getElementById("titulo").value = "";
+        document.getElementById("descripcion").value = "";
+        });
+        </script>
+
+<script>
+    // Función para actualizar los contadores de artículos en todas las secciones
+    function actualizarContadoresArticulos() {
+        // Obtener todas las secciones que contienen noticias
+        const seccionesNoticias = document.querySelectorAll("main section");
+
+        // Contador total de artículos
+        let totalArticulos = 0;
+
+        // Iterar sobre cada sección de noticias
+        seccionesNoticias.forEach(function(seccion) {
+            // Obtener todos los títulos de noticias dentro de la sección
+            const titulosNoticias = seccion.querySelectorAll(".titulo-noticia");
+
+            // Obtener el contador de la sección (elemento con clase "contador-articulos")
+            let contador = seccion.querySelector(".contador-articulos");
+
+            // Si no hay un contador, crear uno
+            if (!contador) {
+                contador = document.createElement("span");
+                contador.classList.add("contador-articulos");
+                seccion.insertBefore(contador, seccion.firstChild); // Insertar el contador al comienzo de la sección
+            }
+
+            // Actualizar el texto del contador con la cantidad de títulos de noticias
+            contador.textContent = `Artículos: ${titulosNoticias.length}`;
+
+            // Agregar la cantidad de títulos de noticias en la sección al contador total
+            totalArticulos += titulosNoticias.length;
+        });
+
+        // Mostrar el total de artículos en el footer
+        const totalArticulosElemento = document.getElementById("total-articulos");
+        if (totalArticulosElemento) {
+            totalArticulosElemento.textContent = `Total de artículos: ${totalArticulos}`;
+        }
+    }
+
+    // Llamar a la función al cargar la página para actualizar los contadores inicialmente
+    window.addEventListener("load", actualizarContadoresArticulos);
+</script>
+
+
+
+
+    <script>
+        const fechaHoraElemento = document.getElementById('fecha-hora');
+        function actualizarFechaHora() {
+            const ahora = new Date();
+            const fecha = ahora.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            const hora = ahora.toLocaleTimeString('es-ES', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+            fechaHoraElemento.textContent = `${fecha} - ${hora}`;
+        }    
+        actualizarFechaHora();
+        setInterval(actualizarFechaHora, 1000);
+    </script>
 </body>
 </html>
