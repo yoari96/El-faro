@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Faro</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bulma@0.10.5/css/bulma.min.css">
     <style>
         body {
-            background-color: white;
+            background-color: black;
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
         }
         header, nav {
-            background-color: #f5f5f5;
-            color: #d2d3d0;
+            background-color: #f9fbfc;
+            color: #e04e22;
             padding: 20px;
             text-align: center;
             justify-content: space-between;
@@ -30,14 +30,16 @@
         }  
         nav ul li {
             display: inline;
-            margin-right: 10px;
+            margin-right: 20px;
         }
         nav ul li a {
             text-decoration: underline; 
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
         }
         nav ul li a:hover {
-            text-decoration: none; 
-            font-weight: bold; 
+            color: #ffd54f;
         }
         main {
             display: grid;
@@ -46,10 +48,11 @@
             padding: 20px;
         }
         section {
-            background-color: #f9f9f9;
+            background-color: #51cad3;
             padding: 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
         section:hover {
             background-color: black;
@@ -58,18 +61,16 @@
         
         section h2 {
             margin-top: 0;
+            font-size: 20px;
+            margin-bottom: 10px;
         }
         section p {
             margin-bottom: 15px;
-        }
-        img {
-            width: 200px;
-            height: auto;
-            margin-top: 10px;
+            line-height: 1.5;
         }
         footer {
-            background-color: #c9d2d0;
-            color: #31231e; 
+            background-color: #51cad3;
+            color: #e04e22; 
             padding: 20px;
             text-align: center;
         }
@@ -100,7 +101,7 @@
         #fecha-hora {
             font-size: 16px;
             font-weight: bold;
-            color: #31231e;
+            color: #e04e22;
         }
         form {
             margin-bottom: 20px;
@@ -127,53 +128,89 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
+        .navbar-item.custom-text-color {
+        color: #e04e22; /* Color de texto personalizado */
+    }
+        .avisos {
+            background-color: #ffd700; /* Color de fondo amarillo */
+            color: #333; /* Color de texto oscuro */
+            padding: 10px 0; /* Espaciado interno */
+            text-align: center; /* Alineación centrada */
+            font-weight: bold; /* Texto en negrita */
+        }
+        
+        img {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
+            }
+        .centrar-imagen {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+        .articulo {
+            background-color: #51cad3;
+        }
     </style>
 </head>
+
 <body>
-    <header>
-        <h1>El Faro</h1>
-        <div id="fecha-hora"></div>
-        <img src="logotipo.jpeg">
-    </header>
+    
+    <div class="avisos">
+        ¡Oferta! Nueva promoción disponible - ¡No te lo pierdas!
+    </div>
+
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                <img src="logotipo.jpeg" alt="Logo">
+                <h1 style="color: #e04e22;">El Faro</h1>
+                <div id="fecha-hora"></div>
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
 </body>
 </html>   
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#Deporte">Deporte</a></li>
-            <li><a href="#negocios">Negocios</a></li>
-        </ul>
-    </nav>
-    
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item custom-text-color" href="#inicio">Inicio</a>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-end">
+            <a class="navbar-item custom-text-color" href="#Deporte">Deporte</a>
+            <a class="navbar-item custom-text-color" href="#negocios">Negocios</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item custom-text-color" href="#form-contacto">Otras secciones</a>
+            <a class="navbar-item custom-text-color" href="#articulos-recientes">Artículos Recientes</a>
+            <a class="navbar-item custom-text-color" href="#otros-articulos">Otros Artículos</a>
+        </div>
+    </div>
+</nav>
+
+
+
     <main id="contenedor-articulos">
-        <section id="inicio">
+         <section id="inicio">
             <h2>Inicio</h2>
             <div class="contador-articulos"></div>           
                     <h2 class="titulo-noticia">LEYENDA: Esta es la historia y el legado de Akira Toriyama</h2>
                     <p>Categoría: Noticia General</p>
                     <td>El creador de Dragon Ball pasó por varias etapas en su carrera antes de volverse el mejor mangaka.</td>                  
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Centrar Imagen - El Faro</title>
-                        <style>
-                            .centrar-imagen {
-                                display: block;
-                                margin-left: auto;
-                                margin-right: auto;
-                            }
-                            img {
-                            width: 400px;
-                            height: auto;
-                             margin-top: 20px;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <img class="centrar-imagen" src="akira.jpg">
-                    </body>
-                    </html>
-   
+                    <img class="centrar-imagen" src="akira.jpg" alt="Imagen de Akira Toriyama" height="500">
+ 
                     <td>El 1 de marzo de 2024 falleció una de las mayores leyendas del manga y el anime, no referimos al inigualable Akira Toriyama. 
                         Este mangaka fue el autor de icónicas obras que se popularizaron a lo largo de su carrera, siendo Dragon Ball la más destacada.</td>
                         <p>Su muerte fue causa de millones de mensajes de admiración y tristeza por parte de fanáticos y colegas. Estos demostraron la importancia que tuvo el autor 
@@ -196,19 +233,7 @@
                             <head>
                                 <meta charset="UTF-8">
                                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                <title>Centrar Imagen - image1</title>
-                                <style>
-                                    .centrar-imagen {
-                                        display: block;
-                                        margin-left: auto;
-                                        margin-right: auto;
-                                    }
-                                    img {
-                                    width: 600px;
-                                    height: auto;
-                                    margin-top: 20px;
-                                    }
-                                </style>
+                                <title>Centrar Imagen - image1</title>       
                             </head>
                             <body>
                                 <img class="centrar-imagen" src="image1.jpg">
@@ -291,13 +316,6 @@
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Centrar Imagen - El Faro</title>
-                        <style>
-                            .centrar-imagen {
-                                display: block;
-                                margin-left: auto;
-                                margin-right: auto;
-                            }
-                        </style>
                     </head>
                     <body>
                         <img class="centrar-imagen" src="trump.webp">
@@ -531,7 +549,7 @@
                             </style>
                         </head>
                         <body>
-                        <video class="centrar-video" width="570" height="360" controls>
+                        <video class="centrar-video" width="300" height="350" controls>
                             <source src="Huachipato.mp4" type="video/mp4">
                             Tu navegador no soporta el elemento de video.
                         </video>
@@ -551,8 +569,6 @@
                     <p>Categoría: Negocios</p>
                     
                     <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Centrar Imagen - El Faro</title>
                         <style>
                             .centrar-imagen {
@@ -598,16 +614,7 @@
                     
                     <td>Los economistas dudan que el impacto de esta tecnología ya sea visible en las cifras de productividad. Pero las grandes compañías dicen que la están adoptando en aras de la eficiencia.
                         <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             <title>Centrar Imagen - El Faro</title>
-                            <style>
-                                .centrar-imagen {
-                                    display: block;
-                                    margin-left: auto;
-                                    margin-right: auto;
-                                }
-                            </style>
                         </head>
                         <body>
                             <img class="centrar-imagen" src="ia.png">
@@ -643,13 +650,91 @@
                        <p>“Todavía no lo vemos en los datos”, afirmó, y explicó que cree que el repunte reciente de la productividad ha sido más bien la recuperación rápida después la fuerte caída experimentada durante la pandemia. “La buena noticia es que se avecina otra ola”.</p>
 
                     </td>
-
         </section>
+
+        <section class="section" id="articulos-recientes">
+            <div class="container">
+                <h2 class="title">Artículos Recientes</h2>
+                <div class="columns is-multiline">
+                    <div class="column is-one-third">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="israel.jpg" alt="israel" class="centrar-imagen">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    <h2 class="titulo-noticia">Al menos 14 muertos tras incursión de 2 días del ejército israelí en la Ribera Occidental</h2>
+                                    <p>Soldados israelíes concluyeron una operación de dos días en el campo de refugiados de Nur al-Shams en la ocupada Ribera Occidental, dijeron las Fuerzas de Defensa de Israel a CNN el domingo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Las imágenes de la redada, una de las más grandes de las FDI en la Ribera Occidental desde el 7 de octubre, muestran losas de concreto y escombros esparcidos por el área. Al menos 14 personas, entre ellas un niño y un adolescente, murieron en el ataque, dijeron el sábado el Ministerio de Salud palestino y la agencia oficial de noticias Wafa. 
+                        Israel dice que mató a 10 "terroristas" y arrestó a sospechosos buscados.</p>
+                    <div class="column is-one-third">
+                   <p>La violencia de los colonos israelíes y los soldados de las FDI en la Ribera Occidental aumentó durante la campaña bélica de Israel en Gaza. 
+                    Los colonos mataron el sábado al conductor de una ambulancia que intentaba transportar a palestinos heridos, dijo la Media Luna Roja Palestina.</p>
+                    </div>
+                    <div class="column is-one-third">
+                        <p>Según el Ministerio de Salud, 483 palestinos han muerto por colonos o soldados israelíes en la ocupada Ribera Occidental y Jerusalén Oriental desde el 7 de octubre.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <section class="section" id="otros-articulos">
+            <div class="container">
+                <h2 class="title">Otros Artículos</h2>
+                <div class="columns is-multiline is-mobile">
+                    <div class="column is-half-tablet is-one-third-desktop">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="ajedrez.webp" alt="ajedrez" class="centrar-imagen">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    <h2 class="titulo-noticia">El campeón nigeriano de ajedrez Tunde Onakoya juega durante 60 horas en Times Square y bate el récord de maratón</h2>
+                                    <p class="is-size-7">Tunde Onakoya, campeón de ajedrez nigeriano y defensor de la educación infantil, juega una partida de ajedrez en Times Square, el viernes 19 de abril de 2024, en Nueva York. Yuki Iwamura/AP </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repite el bloque de tarjeta para cada otro artículo -->
+                    <div class="column is-half-tablet is-one-third-desktop">
+                        <p>El campeón nigeriano de ajedrez y defensor de la educación infantil Tunde Onakoya ha batido el récord del maratón de ajedrez más largo después de jugar durante extraordinarias 60 horas sin parar bajo las brillantes luces de Times Square en la ciudad de Nueva York.</p>
+                    </div>
+                    <div class="column is-half-tablet is-one-third-desktop">
+                        <p>La organización Guinness World Record aún no ha confirmado el intento de Onakoya, que a veces puede tardar semanas, pero para muchos nigerianos, el joven de 29 años ya es considerado una especie de héroe nacional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
 
     </main>
     
     <footer>
-        <p>Derechos de autor © 2024 El Faro - Todos los derechos reservados</p>
+       
+        <div class="footer-column">
+            <h3>Contacto</h3>
+            <p>Dirección: 123 Calle Principal, Concepción</p>
+            <p>Teléfono: (123) 456-7890</p>
+            <p>Email: ariel.peredo@correoaiep.cl</p>
+        </div>
+        <div class="footer-column">
+            <h3>Redes Sociales</h3>
+            <ul class="social-icons">
+                <li><a href="#"><img src="facebook.png" alt="Facebook" width="100"></a></li>
+                <li><a href="#"><img src="x.webp" alt="X"></a></li>
+                <li><a href="#"><img src="instagram.jpg" alt="Instagram"></a></li>
+            </ul>
+        </div>
+        
         <form id="form-contacto">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
@@ -663,6 +748,7 @@
             <button type="submit" class="submit-button">Enviar</button>
         </form>
         <div id="total-articulos" class="contador-articulos"></div>
+        <p>Derechos de autor © 2024 El Faro - Todos los derechos reservados</p>
     </footer>
 
     
@@ -678,11 +764,7 @@
         <button type="submit">Enviar Artículo</button>
     </form>
     
-    <style>
-        .articulo {
-            background-color: white;
-        }
-    </style>
+
 
 <script>
     document.getElementById("form-articulo").addEventListener("submit", function(event) {
@@ -769,6 +851,30 @@
         }    
         actualizarFechaHora();
         setInterval(actualizarFechaHora, 1000);
+    </script>
+    
+
+    <script>
+        // Script para manejar el menú hamburguesa en dispositivos móviles
+        document.addEventListener('DOMContentLoaded', () => {
+            // Obtener todos los elementos "navbar-burger"
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            // Verificar si hay elementos de "navbar-burger"
+            if ($navbarBurgers.length > 0) {
+                // Agregar un evento de clic a cada elemento "navbar-burger"
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+                        // Obtener el atributo "data-target" del elemento "navbar-burger"
+                        const target = el.dataset.target;
+                        // Obtener el elemento del menú correspondiente
+                        const $target = document.getElementById(target);
+                        // Alternar la clase "is-active" en ambos elementos
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
