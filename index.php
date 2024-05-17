@@ -1,6 +1,36 @@
+<?php
+// Incluir el archivo de configuración
+require_once 'config.php';
+
+// Crear una instancia de la clase mysqli para la conexión a la base de datos
+$conexion = new mysqli($servername, $username, $password, $database);
+
+// Verificar si hay errores de conexión
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+?>
+
+<?php
+require_once 'Conexion.php';
+require_once 'Usuario.php';
+
+// Crear una instancia de la clase de conexión
+$conexion = new Conexion();
+
+// Crear una instancia de la clase de entidad Usuario
+$usuario = new Usuario($conexion);
+
+// Ejemplo de uso: obtener todos los usuarios
+$resultado = $usuario->obtenerUsuarios();
+if ($resultado->num_rows > 0) {
+    // Procesar resultados...
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
-
+<mysql class="connector"></mysql>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -202,35 +232,48 @@
         text-align: center;
         font-weight: bold;
         }
-
-
     </style>
 </head>
 
-<body>
+<div class="avisos">
+    ¡Oferta! Nueva promoción disponible - ¡No te lo pierdas!
+</div>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+            <img src="logotipo.jpeg" alt="Logo">
+            <h1 style="color: #e04e22;">El Faro</h1>
+            <div id="fecha-hora"></div> <!-- Elemento para mostrar la fecha y hora -->
 
-    <div class="avisos">
-        ¡Oferta! Nueva promoción disponible - ¡No te lo pierdas!
+<script>
+    const fechaHoraElemento = document.getElementById('fecha-hora');
+    function actualizarFechaHora() {
+        const ahora = new Date();
+        const fecha = ahora.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const hora = ahora.toLocaleTimeString('es-ES', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+        fechaHoraElemento.textContent = `${fecha} - ${hora}`;
+    }
+    actualizarFechaHora();
+    setInterval(actualizarFechaHora, 1000); // Actualizar cada segundo
+</script>
+
+        </a>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        
     </div>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <img src="logotipo.jpeg" alt="Logo">
-                <h1 style="color: #e04e22;">El Faro</h1>
-                <div id="fecha-hora"></div>
-            </a>
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-                data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-</body>
-<body>
+    <?php
+include 'Coneccion.php';
+$conexion = new ConexionBD();
+?>
+    <body>
     <div class="container">
         <h1>Registro de Cuenta</h1>
-        <form id="formularioRegistro" onsubmit="registrarCuenta(event)">
+        <form id="formularioRegistro" action="procesar_registro.php" method="post">
             <div class="form-control">
                 <label for="nombreUsuario">Nombre de Usuario:</label>
                 <input type="text" id="nombreUsuario" name="nombreUsuario" required>
@@ -251,7 +294,9 @@
     <script src="script.js"></script>
 </body>
 
+
 </html>
+
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item custom-text-color" href="#inicio">Inicio</a>
@@ -281,10 +326,10 @@
         <h2>Inicio</h2>
         <div class="contador-articulos"></div>
         <h2 class="titulo-noticia">LEYENDA: Esta es la historia y el legado de Akira Toriyama</h2>
+        
         <p>Categoría: Noticia General</p>
         <td>El creador de Dragon Ball pasó por varias etapas en su carrera antes de volverse el mejor mangaka.</td>
         <img class="centrar-imagen" src="akira.jpg" alt="Imagen de Akira Toriyama" height="500">
-
         <td>El 1 de marzo de 2024 falleció una de las mayores leyendas del manga y el anime, no referimos al inigualable
             Akira Toriyama.
             Este mangaka fue el autor de icónicas obras que se popularizaron a lo largo de su carrera, siendo Dragon
@@ -1044,7 +1089,7 @@
         </div>
     </section>
 
-
+   
 </main>
 
 <footer>
@@ -1064,7 +1109,7 @@
         </ul>
     </div>
 
-    <form id="form-contacto">
+    <form id="form-contacto" action="procesar_contacto.php" method="post">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
 
@@ -1080,13 +1125,61 @@
     <p>Derechos de autor © 2024 El Faro - Todos los derechos reservados</p>
     
 </footer>
+<?php
+// Crear una instancia de la clase mysqli
+$conexion = new mysqli("127.0.0.1", "root", "", "tu_usuario");
+
+// Verificar si hay errores de conexión
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
+// Llamar al procedimiento almacenado para consultar usuarios
+$resultadoConsulta = $conexion->query("CALL ConsultarUsuarios()");
+if (!$resultadoConsulta) {
+    die("Error al llamar al procedimiento almacenado: " . $conexion->error);
+}
+
+// Procesar resultados de la consulta
+while ($fila = $resultadoConsulta->fetch_assoc()) {
+    // Procesar cada fila
+}
+
+// Cerrar la conexión
+$conexion->close();
+?>
 
 
+<?php
+// Crear una instancia de la clase mysqli para la conexión a la base de datos
+$conexion = new mysqli("127.0.0.1", "root", "", "tu_usuario");
 
-<form id="form-articulo">
-    <input type="text" id="titulo" placeholder="Título del artículo" required>
-    <input type="text" id="descripcion" placeholder="Descripción del artículo" required>
-    <select id="seccion">
+// Verificar si hay errores de conexión
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
+// Definir los parámetros para la inserción
+$nombre = "Ejemplo";
+$correo = "ejemplo@example.com";
+
+// Llamar al procedimiento almacenado para insertar un usuario
+$resultado = $conexion->query("CALL InsertarUsuario('$nombre', '$correo')");
+if (!$resultado) {
+    die("Error al llamar al procedimiento almacenado: " . $conexion->error);
+} else {
+    echo "Usuario insertado correctamente.";
+}
+
+// Cerrar la conexión
+$conexion->close();
+?>
+
+
+<form id="form-articulo" action="procesar_articulo.php" method="post">
+    <input type="text" id="titulo" name="titulo" placeholder="Título del artículo" required>
+    <input type="text" id="descripcion" name="descripcion" placeholder="Descripción del artículo" required>
+    <select id="seccion" name="seccion">
         <option value="inicio">Inicio</option>
         <option value="Deporte">Deporte</option>
         <option value="negocios">Negocios</option>
@@ -1095,119 +1188,91 @@
 </form>
 
 
+<?php
+echo "<script>";
+echo "document.getElementById('form-articulo').addEventListener('submit', function (event) {";
+echo "event.preventDefault();";
+echo "const titulo = document.getElementById('titulo').value;";
+echo "const descripcion = document.getElementById('descripcion').value;";
+echo "const seccionSeleccionada = document.getElementById('seccion').value;";
+echo "const nuevoArticulo = document.createElement('section');";
+echo "nuevoArticulo.innerHTML = `<h2>${titulo}</h2><p>${descripcion}</p>`;";
+echo "nuevoArticulo.classList.add('articulo');";
+echo "document.getElementById(seccionSeleccionada).appendChild(nuevoArticulo);";
+echo "document.getElementById('titulo').value = '';";
+echo "document.getElementById('descripcion').value = '';";
+echo "});";
+echo "</script>";
 
-<script>
-    document.getElementById("form-articulo").addEventListener("submit", function (event) {
-        event.preventDefault();
-
-
-        const titulo = document.getElementById("titulo").value;
-        const descripcion = document.getElementById("descripcion").value;
-
-
-        const seccionSeleccionada = document.getElementById("seccion").value;
-
-
-        const nuevoArticulo = document.createElement("section");
-        nuevoArticulo.innerHTML = `
-            <h2>${titulo}</h2>
-            <p>${descripcion}</p>
-        `;
-
-
-        nuevoArticulo.classList.add("articulo");
-
-
-        document.getElementById(seccionSeleccionada).appendChild(nuevoArticulo);
-
-
-        document.getElementById("titulo").value = "";
-        document.getElementById("descripcion").value = "";
-    });
-</script>
-
-<script>
-    // Función para actualizar los contadores de artículos en todas las secciones
-    function actualizarContadoresArticulos() {
-        // Obtener todas las secciones que contienen noticias
-        const seccionesNoticias = document.querySelectorAll("main section");
-
-        // Contador total de artículos
-        let totalArticulos = 0;
-
-        // Iterar sobre cada sección de noticias
-        seccionesNoticias.forEach(function (seccion) {
-            // Obtener todos los títulos de noticias dentro de la sección
-            const titulosNoticias = seccion.querySelectorAll(".titulo-noticia");
-
-            // Obtener el contador de la sección (elemento con clase "contador-articulos")
-            let contador = seccion.querySelector(".contador-articulos");
-
-            // Si no hay un contador, crear uno
-            if (!contador) {
-                contador = document.createElement("span");
-                contador.classList.add("contador-articulos");
-                seccion.insertBefore(contador, seccion.firstChild); // Insertar el contador al comienzo de la sección
-            }
-
-            // Actualizar el texto del contador con la cantidad de títulos de noticias
-            contador.textContent = `Artículos: ${titulosNoticias.length}`;
-
-            // Agregar la cantidad de títulos de noticias en la sección al contador total
-            totalArticulos += titulosNoticias.length;
-        });
-
-        // Mostrar el total de artículos en el footer
-        const totalArticulosElemento = document.getElementById("total-articulos");
-        if (totalArticulosElemento) {
-            totalArticulosElemento.textContent = `Total de artículos: ${totalArticulos}`;
-        }
-    }
-
-    // Llamar a la función al cargar la página para actualizar los contadores inicialmente
-    window.addEventListener("load", actualizarContadoresArticulos);
-</script>
+echo "<script>";
+echo "function actualizarContadoresArticulos() {";
+echo "const seccionesNoticias = document.querySelectorAll('main section');";
+echo "let totalArticulos = 0;";
+echo "seccionesNoticias.forEach(function (seccion) {";
+echo "const titulosNoticias = seccion.querySelectorAll('.titulo-noticia');";
+echo "let contador = seccion.querySelector('.contador-articulos');";
+echo "if (!contador) {";
+echo "contador = document.createElement('span');";
+echo "contador.classList.add('contador-articulos');";
+echo "seccion.insertBefore(contador, seccion.firstChild);";
+echo "}";
+echo "contador.textContent = `Artículos: ${titulosNoticias.length}`;";
+echo "totalArticulos += titulosNoticias.length;";
+echo "});";
+echo "const totalArticulosElemento = document.getElementById('total-articulos');";
+echo "if (totalArticulosElemento) {";
+echo "totalArticulosElemento.textContent = `Total de artículos: ${totalArticulos}`;";
+echo "}";
+echo "}";
+echo "window.addEventListener('load', actualizarContadoresArticulos);";
+echo "</script>";
+?>
 
 
 
 
-<script>
-    const fechaHoraElemento = document.getElementById('fecha-hora');
-    function actualizarFechaHora() {
-        const ahora = new Date();
-        const fecha = ahora.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        const hora = ahora.toLocaleTimeString('es-ES', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-        fechaHoraElemento.textContent = `${fecha} - ${hora}`;
-    }
-    actualizarFechaHora();
-    setInterval(actualizarFechaHora, 1000);
-</script>
+
+<?php
+echo "<script>";
+echo "const fechaHoraElemento = document.getElementById('fecha-hora');";
+echo "function actualizarFechaHora() {";
+echo "const ahora = new Date();";
+echo "const fecha = ahora.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });";
+echo "const hora = ahora.toLocaleTimeString('es-ES', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });";
+echo "fechaHoraElemento.textContent = `${fecha} - ${hora}`;";
+echo "}";
+echo "actualizarFechaHora();";
+echo "setInterval(actualizarFechaHora, 1000);";
+echo "</script>";
+?>
 
 
-<script>
-    // Script para manejar el menú hamburguesa en dispositivos móviles
-    document.addEventListener('DOMContentLoaded', () => {
-        // Obtener todos los elementos "navbar-burger"
-        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-        // Verificar si hay elementos de "navbar-burger"
-        if ($navbarBurgers.length > 0) {
-            // Agregar un evento de clic a cada elemento "navbar-burger"
-            $navbarBurgers.forEach(el => {
-                el.addEventListener('click', () => {
-                    // Obtener el atributo "data-target" del elemento "navbar-burger"
-                    const target = el.dataset.target;
-                    // Obtener el elemento del menú correspondiente
-                    const $target = document.getElementById(target);
-                    // Alternar la clase "is-active" en ambos elementos
-                    el.classList.toggle('is-active');
-                    $target.classList.toggle('is-active');
-                });
-            });
-        }
-    });
-</script>
 
-<script src="registro.js"></script>
+<?php
+echo "<script>";
+echo "// Script para manejar el menú hamburguesa en dispositivos móviles";
+echo "document.addEventListener('DOMContentLoaded', () => {";
+echo "const \$navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);";
+echo "if (\$navbarBurgers.length > 0) {";
+echo "\$navbarBurgers.forEach(el => {";
+echo "el.addEventListener('click', () => {";
+echo "const target = el.dataset.target;";
+echo "const \$target = document.getElementById(target);";
+echo "el.classList.toggle('is-active');";
+echo "\$target.classList.toggle('is-active');";
+echo "});";
+echo "});";
+echo "}";
+echo "});";
+echo "</script>";
+?>
+
+<?php
+echo '<script src="registro.js"></script>';
+?>
+
+
+
 
 </body>
 
